@@ -1,0 +1,15 @@
+{
+  "name": "protein-project",
+  "version": "1.0.0",
+  "description": "protein counter",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server"
+  },
+  "author": "MellivoraCapens",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
