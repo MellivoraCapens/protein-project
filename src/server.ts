@@ -1,8 +1,12 @@
 import express from "express";
+import { connectDB } from "./config/db";
+import "dotenv/config";
+
+connectDB();
 
 const app: express.Application = express();
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT;
 
 app.get("/", (req, res) => {
   res.send("TypeScript With Express");
