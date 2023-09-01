@@ -1,74 +1,74 @@
 import { Request, Response, NextFunction, RequestHandler } from "express";
-import User, { IUser } from "../models/User";
+import Food, { IFood } from "../models/Food";
 import { ErrorResponse } from "../utils/errorResponse";
 import { asyncHandler } from "../middleware/async";
 
-export const createUser = asyncHandler(
+export const createFood = asyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
-    const user = await User.create(req.body);
+    const food = await Food.create(req.body);
     res.status(200).json({
       success: true,
-      data: user,
+      data: food,
     });
   }
 );
 
-export const getUsers = asyncHandler(
+export const getFoods = asyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
-    const users = await User.find();
+    const foods = await Food.find();
 
     res.status(200).json({
       success: true,
-      count: users.length,
-      data: users,
+      count: foods.length,
+      data: foods,
     });
   }
 );
 
-export const getUser = asyncHandler(
+export const getFood = asyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
-    const user : IUser | null = await User.findById(req.params.id);
+    const food : IFood | null = await Food.findById(req.params.id);
 
-    if (!user) {
+    if (!food) {
       return next(
-        new ErrorResponse(`User not found with id of ${req.params.id}`, 404)
+        new ErrorResponse(`Food not found with id of ${req.params.id}`, 404)
       );
     }
 
     res.status(200).json({
       success: true,
-      data: user,
+      data: food,
     });
   }
 );
 
-export const updateUser = asyncHandler(
+export const updateFood = asyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
-    const user = await User.findByIdAndUpdate(req.params.id, req.body, {
+    const food = await Food.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
       runValidators: true,
     });
 
-    if (!user) {
+    if (!food) {
       return next(
-        new ErrorResponse(`User not found with id of ${req.params.id}`, 404)
+        new ErrorResponse(`Food not found with id of ${req.params.id}`, 404)
       );
     }
 
     res.status(200).json({
       success: true,
-      data: user,
+      data: food,
     });
   }
 );
 
-export const deleteUser = asyncHandler(
+export const deleteFood = asyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
-    const user = await User.findByIdAndDelete(req.params.id);
+    const food = await Food.findByIdAndDelete(req.params.id);
 
-    if (!user) {
+    if (!food) {
       return next(
-        new ErrorResponse(`User not found with id of ${req.params.id}`, 404)
+        new ErrorResponse(`Food not found with id of ${req.params.id}`, 404)
       );
     }
 
