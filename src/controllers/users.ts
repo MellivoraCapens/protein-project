@@ -1,39 +1,32 @@
-import { RequestHandler } from "express";
+import { Request, Response, NextFunction, RequestHandler } from "express";
 import User from "../models/User";
 import { ErrorResponse } from "../utils/errorResponse";
+import { asyncHandler } from "../middleware/async";
 
-export const createUser: RequestHandler = async (req, res, next) => {
-  try {
+export const createUser = asyncHandler(
+  async (req: Request, res: Response, next: NextFunction) => {
     const user = await User.create(req.body);
     res.status(200).json({
       success: true,
       data: user,
     });
-  } catch (err) {
-    res.status(400).json({
-      success: false,
-      error: err,
-    });
   }
-};
+);
 
-export const getUsers: RequestHandler = async (req, res, next) => {
-  try {
+export const getUsers = asyncHandler(
+  async (req: Request, res: Response, next: NextFunction) => {
     const users = await User.find();
+
     res.status(200).json({
       success: true,
+      count: users.length,
       data: users,
     });
-  } catch (err) {
-    res.status(400).json({
-      success: false,
-      error: err,
-    });
   }
-};
+);
 
-export const getUser: RequestHandler = async (req, res, next) => {
-  try {
+export const getUser = asyncHandler(
+  async (req: Request, res: Response, next: NextFunction) => {
     const user = await User.findById(req.params.id);
 
     if (!user) {
@@ -46,16 +39,11 @@ export const getUser: RequestHandler = async (req, res, next) => {
       success: true,
       data: user,
     });
-  } catch (err) {
-    res.status(400).json({
-      success: false,
-      error: err,
-    });
   }
-};
+);
 
-export const updateUser: RequestHandler = async (req, res, next) => {
-  try {
+export const updateUser = asyncHandler(
+  async (req: Request, res: Response, next: NextFunction) => {
     const user = await User.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
       runValidators: true,
@@ -71,16 +59,11 @@ export const updateUser: RequestHandler = async (req, res, next) => {
       success: true,
       data: user,
     });
-  } catch (err) {
-    res.status(400).json({
-      success: false,
-      error: err,
-    });
   }
-};
+);
 
-export const deleteUser: RequestHandler = async (req, res, next) => {
-  try {
+export const deleteUser = asyncHandler(
+  async (req: Request, res: Response, next: NextFunction) => {
     const user = await User.findByIdAndDelete(req.params.id);
 
     if (!user) {
@@ -93,10 +76,5 @@ export const deleteUser: RequestHandler = async (req, res, next) => {
       success: true,
       data: {},
     });
-  } catch (err) {
-    res.status(400).json({
-      success: false,
-      error: err,
-    });
   }
-};
+);
