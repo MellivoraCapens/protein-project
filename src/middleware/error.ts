@@ -8,7 +8,6 @@ export const errorHandler = (
   next: NextFunction
 ) => {
   let error = { ...err };
-  console.log(error);
 
   if (err.name === "CastError") {
     const message = `User not found with id of ${err.value}`;
@@ -27,9 +26,6 @@ export const errorHandler = (
     const message = `Duplicate field value entered`;
     error = new ErrorResponse(message, 400);
   }
-
-  console.log(error.statusCode);
-  console.log(error);
 
   res.status(error.statusCode || 500).json({
     success: false,
