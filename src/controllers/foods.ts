@@ -3,6 +3,9 @@ import Food from "../models/Food";
 import { ErrorResponse } from "../utils/errorResponse";
 import { asyncHandler } from "../middleware/async";
 
+// @desc    create food
+// @route   POST /api/v1/foods
+// @access  private
 export const createFood = asyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
     const food = await Food.create(req.body);
@@ -13,6 +16,9 @@ export const createFood = asyncHandler(
   }
 );
 
+// @desc    show all foods
+// @route   GET /api/v1/foods
+// @access  public
 export const getFoods = asyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
     const foods = await Food.find();
@@ -25,6 +31,9 @@ export const getFoods = asyncHandler(
   }
 );
 
+// @desc    show single food
+// @route   GET /api/v1/foods/:id
+// @access  public
 export const getFood = asyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
     const food = await Food.findById(req.params.id);
@@ -42,6 +51,9 @@ export const getFood = asyncHandler(
   }
 );
 
+// @desc    update food
+// @route   PUT /api/v1/foods/:id
+// @access  private
 export const updateFood = asyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
     const food = await Food.findByIdAndUpdate(req.params.id, req.body, {
@@ -62,6 +74,9 @@ export const updateFood = asyncHandler(
   }
 );
 
+// @desc    delete food
+// @route   DELETE /api/v1/foods/:id
+// @access  private
 export const deleteFood = asyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
     const food = await Food.findByIdAndDelete(req.params.id);

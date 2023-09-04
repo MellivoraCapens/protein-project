@@ -3,6 +3,9 @@ import User from "../models/User";
 import { ErrorResponse } from "../utils/errorResponse";
 import { asyncHandler } from "../middleware/async";
 
+// @desc    create user
+// @route   POST /api/v1/users
+// @access  private
 export const createUser = asyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
     const user = await User.create(req.body);
@@ -13,6 +16,9 @@ export const createUser = asyncHandler(
   }
 );
 
+// @desc    show all users
+// @route   GET /api/v1/users
+// @access  public
 export const getUsers = asyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
     const users = await User.find();
@@ -25,6 +31,9 @@ export const getUsers = asyncHandler(
   }
 );
 
+// @desc    show single user
+// @route   GET /api/v1/users/:id
+// @access  public
 export const getUser = asyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
     const user = await User.findById(req.params.id);
@@ -42,6 +51,9 @@ export const getUser = asyncHandler(
   }
 );
 
+// @desc    update user
+// @route   PUT /api/v1/users/:id
+// @access  private
 export const updateUser = asyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
     const user = await User.findByIdAndUpdate(req.params.id, req.body, {
@@ -62,6 +74,9 @@ export const updateUser = asyncHandler(
   }
 );
 
+// @desc    delete user
+// @route   DELETE /api/v1/users/:id
+// @access  private
 export const deleteUser = asyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
     const user = await User.findByIdAndDelete(req.params.id);
