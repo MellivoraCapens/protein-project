@@ -8,6 +8,7 @@ export const errorHandler = (
   next: NextFunction
 ) => {
   let error = { ...err };
+  console.log(error);
 
   if (err.name === "CastError") {
     const message = `User not found with id of ${err.value}`;
@@ -15,9 +16,10 @@ export const errorHandler = (
   }
 
   if (err.name === "ValidationError") {
-    const mess = Object.values(err.errors).map((val: any) => val.message);
-    const message = `${mess}`;
-
+    const printMessages = Object.values(err.errors).map(
+      (val: any) => val.message
+    );
+    const message = `${printMessages}`;
     error = new ErrorResponse(message, 400);
   }
 
@@ -25,6 +27,9 @@ export const errorHandler = (
     const message = `Duplicate field value entered`;
     error = new ErrorResponse(message, 400);
   }
+
+  console.log(error.statusCode);
+  console.log(error);
 
   res.status(error.statusCode || 500).json({
     success: false,

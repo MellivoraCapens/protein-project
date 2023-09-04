@@ -67,6 +67,15 @@ export const updateUser = asyncHandler(
       );
     }
 
+    if (req.body.password) {
+      return next(
+        new ErrorResponse(
+          `User role is not authorized to access this route`,
+          401
+        )
+      );
+    }
+
     res.status(200).json({
       success: true,
       data: user,
