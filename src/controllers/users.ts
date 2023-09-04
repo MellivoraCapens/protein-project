@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction, RequestHandler } from "express";
+import { Request, Response, NextFunction } from "express";
 import User from "../models/User";
 import { ErrorResponse } from "../utils/errorResponse";
 import { asyncHandler } from "../middleware/async";

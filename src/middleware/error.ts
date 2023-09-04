@@ -7,7 +7,7 @@ export const errorHandler = (
   res: Response,
   next: NextFunction
 ) => {
-  let error = { ...err };
+  let error = new ErrorResponse(err.message, err.statusCode);
 
   if (err.name === "CastError") {
     const message = `User not found with id of ${err.value}`;

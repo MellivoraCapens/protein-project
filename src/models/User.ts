@@ -1,11 +1,14 @@
 import mongoose, { Schema } from "mongoose";
 import * as bcrypt from "bcryptjs";
+import * as jwt from "jsonwebtoken";
 
 export interface IUser extends mongoose.Document {
   name: string;
   email: string;
   password: string;
   role: string;
+  resetPasswordToken: string;
+  resetPasswordExpire: Date;
   createdAt: Date;
 }
 
@@ -35,6 +38,8 @@ const UserSchema: Schema = new Schema<IUser>({
     enum: ["user", "admin"],
     default: "user",
   },
+  resetPasswordToken: String,
+  resetPasswordExpire: Date,
   createdAt: {
     type: Date,
     default: Date.now,
@@ -48,5 +53,15 @@ UserSchema.pre("save", async function (next) {
   const salt = await bcrypt.genSalt(10);
   this.password = await bcrypt.hash(this.password, salt);
 });
+
+UserSchema.methods.getSignedJwtToken = function () {
+  return jwt.sign({ id: this._id }, process.env.JWT_SECRET as jwt.Secret, {
+    expiresIn: process.env.JWT_EXPIRE,
+  });
+};
+
+UserSchema.methods.matchPassword = async function (enteredPassword: any) {
+  return await bcrypt.compare(enteredPassword, this.password);
+};
 
 export default mongoose.model("User", UserSchema);
