@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction, RequestHandler } from "express";
-import Food, { IFood } from "../models/Food";
+import Food from "../models/Food";
 import { ErrorResponse } from "../utils/errorResponse";
 import { asyncHandler } from "../middleware/async";
 
@@ -27,7 +27,7 @@ export const getFoods = asyncHandler(
 
 export const getFood = asyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
-    const food : IFood | null = await Food.findById(req.params.id);
+    const food = await Food.findById(req.params.id);
 
     if (!food) {
       return next(

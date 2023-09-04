@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction, RequestHandler } from "express";
-import User, { IUser } from "../models/User";
+import User from "../models/User";
 import { ErrorResponse } from "../utils/errorResponse";
 import { asyncHandler } from "../middleware/async";
 
@@ -27,7 +27,7 @@ export const getUsers = asyncHandler(
 
 export const getUser = asyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
-    const user : IUser | null = await User.findById(req.params.id);
+    const user = await User.findById(req.params.id);
 
     if (!user) {
       return next(
