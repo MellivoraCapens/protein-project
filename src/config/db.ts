@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import config from "./index";
 
 export const connectDB = async () => {
   const conn = await mongoose.connect(

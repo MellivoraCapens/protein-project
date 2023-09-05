@@ -9,7 +9,8 @@ declare global {
       MONGO_URI: string;
       NODE_ENV: "test" | "development" | "product";
       JWT_SECRET: jwt.Secret;
-      JWT_EXPIRE: number;
+      JWT_EXPIRE: any;
+      JWT_COOKIE_EXPIRE: number;
     }
   }
 }

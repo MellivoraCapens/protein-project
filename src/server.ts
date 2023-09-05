@@ -1,10 +1,11 @@
 import express, { Request, Response, NextFunction } from "express";
 import { connectDB } from "./config/db";
+import { errorHandler } from "./middleware/error";
 import "dotenv/config";
 import users from "./routes/users";
 import foods from "./routes/foods";
 import auth from "./routes/auth";
-import { errorHandler } from "./middleware/error";
+import cookieParser from "cookie-parser";
 
 connectDB();
 
@@ -13,6 +14,8 @@ const app: express.Application = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
+
+app.use(cookieParser());
 
 app.use("/api/v1/users", users);
 app.use("/api/v1/foods", foods);
