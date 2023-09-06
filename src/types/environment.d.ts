@@ -1,4 +1,5 @@
 import { Secret } from "jsonwebtoken";
+import nodemailer from "nodemailer";
 
 export {};
 
@@ -11,6 +12,12 @@ declare global {
       JWT_SECRET: jwt.Secret;
       JWT_EXPIRE: any;
       JWT_COOKIE_EXPIRE: number;
+      SMTP_HOST: nodemailer.TransportOptions;
+      SMTP_PORT: string;
+      SMTP_EMAIL: string;
+      SMTP_PASSWORD: string;
+      FROM_EMAIL: string;
+      FROM_NAME: string;
     }
   }
 }
