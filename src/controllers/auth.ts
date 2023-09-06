@@ -2,7 +2,6 @@ import { Request, Response, NextFunction } from "express";
 import User from "../models/User";
 import { ErrorResponse } from "../utils/errorResponse";
 import { asyncHandler } from "../middleware/async";
-import { AnyMxRecord } from "dns";
 
 // @desc    login user
 // @route   POST /api/v1/auth/login
@@ -57,7 +56,6 @@ export const register = asyncHandler(
 export const getMe = asyncHandler(
   async (req: any, res: Response, next: NextFunction) => {
     const user = await User.findById(req.user.id);
-
     res.status(200).json({
       success: true,
       data: user,

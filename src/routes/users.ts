@@ -11,7 +11,7 @@ import { protect, authorize } from "../middleware/auth";
 const router = Router();
 
 router.use(protect);
-//router.use(authorize("admin"));
+router.use(authorize("admin"));
 
 router.route("/").get(getUsers).post(createUser);
 
