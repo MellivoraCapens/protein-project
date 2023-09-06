@@ -2,6 +2,7 @@ import { Request, Response, NextFunction } from "express";
 import User from "../models/User";
 import { ErrorResponse } from "../utils/errorResponse";
 import { asyncHandler } from "../middleware/async";
+import { IUser } from "../models/User";
 
 // @desc    login user
 // @route   POST /api/v1/auth/login
