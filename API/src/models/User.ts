@@ -1,4 +1,4 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose, { Schema, Types } from "mongoose";
 import * as bcrypt from "bcryptjs";
 import * as jwt from "jsonwebtoken";
 import * as crypto from "node:crypto";
@@ -78,3 +78,14 @@ UserSchema.methods.getResetPasswordToken = function () {
 };
 
 export default mongoose.model("User", UserSchema);
+
+export interface IUserDTO extends mongoose.Document {
+  _id: Types.ObjectId;
+  name: string;
+  email: string;
+  password: string;
+  role: string;
+  resetPasswordToken: string;
+  resetPasswordExpire: Date;
+  createdAt: Date;
+}

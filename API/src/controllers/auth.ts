@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import User from "../models/User";
+import User, { IUser, IUserDTO } from "../models/User";
 import { ErrorResponse } from "../utils/errorResponse";
 import { asyncHandler } from "../middleware/async";
 import { sendEmail } from "../utils/sendEmail";
@@ -56,8 +56,8 @@ export const register = asyncHandler(
 // @route   GET /api/v1/auth/me
 // @access  private
 export const getMe = asyncHandler(
-  async (req: any, res: Response, next: NextFunction) => {
-    const user = await User.findById(req.user.id);
+  async (req: Request, res: Response, next: NextFunction) => {
+    const user = await User.findById(req.user._id);
     res.status(200).json({
       success: true,
       data: user,
@@ -150,13 +150,13 @@ export const resetPassword = asyncHandler(
 // @route   PUT /api/v1/auth/updatedetails
 // @access  private
 export const updateDetails = asyncHandler(
-  async (req: any, res: Response, next: NextFunction) => {
+  async (req: Request, res: Response, next: NextFunction) => {
     const fieldsToUpdate = {
       name: req.body.name,
       email: req.body.email,
     };
 
-    const user = await User.findByIdAndUpdate(req.user.id, fieldsToUpdate, {
+    const user = await User.findByIdAndUpdate(req.user._id, fieldsToUpdate, {
       new: true,
       runValidators: true,
     });
@@ -172,8 +172,8 @@ export const updateDetails = asyncHandler(
 // @route   PUT /api/v1/auth/updatepassword
 // @access  private
 export const updatePassword = asyncHandler(
-  async (req: any, res: Response, next: NextFunction) => {
-    const user = await User.findById(req.user.id).select("+password");
+  async (req: Request, res: Response, next: NextFunction) => {
+    const user = await User.findById(req.user._id).select("+password");
 
     if (!user) {
       return next(new ErrorResponse("User not found", 404));
