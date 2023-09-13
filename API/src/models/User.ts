@@ -61,7 +61,7 @@ UserSchema.methods.getSignedJwtToken = function () {
   });
 };
 
-UserSchema.methods.matchPassword = async function (enteredPassword: any) {
+UserSchema.methods.matchPassword = async function (enteredPassword: string) {
   return await bcrypt.compare(enteredPassword, this.password);
 };
 
@@ -79,13 +79,7 @@ UserSchema.methods.getResetPasswordToken = function () {
 
 export default mongoose.model("User", UserSchema);
 
-export interface IUserDTO extends mongoose.Document {
-  _id: Types.ObjectId;
-  name: string;
-  email: string;
-  password: string;
-  role: string;
-  resetPasswordToken: string;
-  resetPasswordExpire: Date;
-  createdAt: Date;
+export interface IUserDTO extends IUser {
+  _id: string;
+  getSignedJwtToken: Function;
 }
