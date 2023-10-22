@@ -8,7 +8,7 @@ import FoodsPage from "./pages/FoodsPage";
 
 
 function App() {
-  return (
+  return  (
     <div className="font-OpenSans min-h-screen bg-dark text-light">
       <Router>
         <Routes>

@@ -2,12 +2,14 @@ import axios from "axios";
 
 export const getFoods = async () => {
     try{
-        console.log(process.env.APIURL! + "/api/v1/foods");
-        // const res = await axios.get(process.env.APIURL! + "/api/v1/foods")
+        console.log(import.meta.env.VITE_APIURL ||  "api/v1/foods");
+        const res = await axios.get(import.meta.env.VITE_APIURL ||  "api/v1/foods");
 
-        return process.env.APIURL! + "/api/v1/foods";
+        const { data } = await res;
+
+        return data;
     } catch (error) {
-        //Handle Errors
+        console.log(error);
     }
     
   };

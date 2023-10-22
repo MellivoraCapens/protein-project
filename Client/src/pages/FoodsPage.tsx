@@ -1,8 +1,9 @@
 import { getFoods } from "../api/Foods";
 
-const FoodsPage = async () => {
-    const result = await getFoods();
-    console.log(result);
+const FoodsPage =  ()  => {
+    const result = getFoods();
+    //console.log(result);
+
     return (
       <div>
         <h1 className="text-4xl text-secondary">(result)</h1>
