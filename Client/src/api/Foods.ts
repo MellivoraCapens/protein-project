@@ -5,8 +5,9 @@ export const getFoods = async () => {
     try{
         //console.log(import.meta.env.VITE_APIURL +  "api/v1/foods");
         const res = await axios.get(import.meta.env.VITE_APIURL +  "api/v1/foods");
+        console.log(res);
         
-        var result = await res.data;
+        var result = await res.data.data;
 
         var foodArray =  result as Food[];
 
