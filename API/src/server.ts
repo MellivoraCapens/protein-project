@@ -6,6 +6,7 @@ import users from "./routes/users";
 import foods from "./routes/foods";
 import auth from "./routes/auth";
 import cookieParser from "cookie-parser";
+import cors from "cors";
 
 connectDB();
 
@@ -16,6 +17,10 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 
 app.use(cookieParser());
+
+app.use(cors({
+  origin: '*'
+}))
 
 app.use("/api/v1/users", users);
 app.use("/api/v1/foods", foods);
