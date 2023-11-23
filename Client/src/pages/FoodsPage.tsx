@@ -42,32 +42,62 @@ const FoodsPage =  ()  => {
             {food.name}
           </button>
           <div id="collapseExample" data-te-collapse-item>
-            {/* <table className="block rounded-lg bg-slate-400 p-6 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(15,0,0,0.04)] dark:bg-neutral-700 dark:text-neutral-50">
+            <table className="block rounded-lg px-6 pb-2 pt-2.5 bg-slate-400 p-6 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(15,0,0,0.04)] dark:bg-neutral-700 dark:text-neutral-50">
               <tr>
                 <td>
-                  
+                  <div className="relative mb-6" data-te-input-wrapper-init>
+                    <input
+                      type="text"
+                      className="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
+                      id="description"
+                      value={food.description}
+                      placeholder="description" />
+                    <label
+                      htmlFor="description"
+                      className="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
+                      >Description
+                    </label>
+                  </div>
+                </td>
+                <td>
+                  <div className="relative mb-6" data-te-input-wrapper-init>
+                    <input
+                      type="text"
+                      className="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
+                      id="caloriesPerGram"
+                      value={food.caloriesPerGram}
+                      placeholder="caloriesPerGram" />
+                    <label
+                      htmlFor="caloriesPerGram"
+                      className="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
+                      >Calories Per Gram
+                    </label>
+                  </div>
+                </td>
+                <td>
+                  <div className="relative mb-6" data-te-input-wrapper-init>
+                    <input
+                      type="text"
+                      className="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
+                      id="proteinPerGram"
+                      value={food.proteinPerGram}
+                      placeholder="proteinPerGram" />
+                    <label
+                      htmlFor="proteinPerGram"
+                      className="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
+                      >Protein Per Gram
+                    </label>
+                  </div>
                 </td>
               </tr>
-            </table> */}
-              Description : {food.description}
+            </table>
+              {/* Description : {food.description}
               Calories Per Gram : {food.caloriesPerGram}
               Protein Per Gram : {food.proteinPerGram}
-              Created At: {food.createdAt.toString()}
+              Created At: {food.createdAt.toString()} */}
           </div>
         </div> )
     }</div>
-
-      // <div className='row container-fluid py-3'>{
-      //   foods && foods.map(post => <div className='col-lg-4 mb-3' key={post.id}>
-      //     <div className="card">
-      //       <div className="card-body">
-      //         <div>Post number: {post.id}</div>
-      //         <div className="card-title fs-4 fw-normal">{post.id}</div>
-      //         <div>{post.name}</div>
-      //       </div>
-      //     </div>
-      //   </div>)
-      // }</div>
     );
   };
   
