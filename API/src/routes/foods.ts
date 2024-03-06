@@ -6,8 +6,12 @@ import {
   updateFood,
   deleteFood,
 } from "../controllers/foods";
+// import { protect, authorize } from "../middleware/auth";
 
 const router = Router();
+
+// router.use(protect);
+// router.use(authorize("admin"));
 
 router.route("/").get(getFoods).post(createFood);
 
