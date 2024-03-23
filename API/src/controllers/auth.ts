@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import User, { IUser, IUserDTO } from "../models/User";
+import User from "../models/User";
 import { ErrorResponse } from "../utils/errorResponse";
 import { asyncHandler } from "../middleware/async";
 import { sendEmail } from "../utils/sendEmail";
@@ -120,7 +120,7 @@ export const forgotPassword = asyncHandler(
 
 // @desc    reset password
 // @route   PUT /api/v1/auth/resetpassword/:resettoken
-// @access  public
+// @access  private
 export const resetPassword = asyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
     const resetPasswordToken = crypto
